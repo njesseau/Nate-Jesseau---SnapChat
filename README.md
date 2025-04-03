@@ -29,7 +29,9 @@ The Groups table organizes users into groups for group chats, and the Memory tab
 ## Queries
 
 Query 1
+
 Find all the users who have received a friend request from a specific user.
+
 SELECT U.Name, U.UserID, F.Sender_UserID, F. Receiver_UserID  
 FROM Users as U
 JOIN Friend as F on U.UserID = F.Receiver_UserID
@@ -45,7 +47,6 @@ SELECT M.timestamp, M.sender_UserID, M.Group_ID, G.Group_Name
 FROM Message as M 
 JOIN Groups as G on M.Group_ID = G.Group_ID
 WHERE G.Group_ID = '1';
-
 
 
 
@@ -67,6 +68,7 @@ FROM Users AS U
 JOIN Snap AS S ON U.UserID = S.Sender_UserID
 GROUP BY U.Name
 ORDER BY NumberOfSnapsSent DESC;
+
 
 Query 5
 
