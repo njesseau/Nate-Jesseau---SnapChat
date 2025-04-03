@@ -10,7 +10,16 @@ The Groups table organizes users into groups for group chats, and the Memory tab
 
 ## Entity Relational Model
 
-### Relational Model 
+
+## Relational Model 
+
+## Source Code
+
+* [Create Script (DDL](create.sql)
+
+
+
+
 
 
 
