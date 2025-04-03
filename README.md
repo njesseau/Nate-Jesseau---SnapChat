@@ -15,7 +15,7 @@ The Groups table organizes users into groups for group chats, and the Memory tab
 
 ## Source Code
 
-* [Create Script (DDL]([Create.sql]))
+* [Create Script (DDL](Create.SQL)
 
 
 
