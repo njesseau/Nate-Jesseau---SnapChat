@@ -10,6 +10,7 @@ The Groups table organizes users into groups for group chats, and the Memory tab
 
 ## Entity Relational Model
 
+![ER Model of Snapchat](Model.png)
 
 ## Relational Model 
 
