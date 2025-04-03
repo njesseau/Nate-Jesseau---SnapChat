@@ -1,82 +1,18 @@
-# Nate-Jesseau---SnapChat
-CREATE TABLE Users
-(
-  UserID INT NOT NULL,
-  Email VARCHAR(60) NOT NULL,
-  Name VARCHAR(60) NOT NULL,
-  Phone_Number VARCHAR(15),
-  PRIMARY KEY (UserID)
-);
 
-CREATE TABLE Message
-(
-  Chat_ID INT NOT NULL,
-  Sender_UserID INT NOT NULL,
-  Group_ID INT,
-  Timestamp DATE NOT NULL,
-  PRIMARY KEY (Chat_ID),
-  FOREIGN KEY (Sender_UserID) REFERENCES Users (UserID),
-  FOREIGN KEY (Group_ID) REFERENCES Groups (Group_ID)
-);
+SnapChat Database Overview
 
-CREATE TABLE Snap
-(
-  SnapID INT NOT NULL,
-  Sender_UserID INT NOT NULL,
-  Receiver_UserID INT NOT NULL,
-  Image_Type VARCHAR(6) NOT NULL,
-  CONSTRAINT valid_Image_Type CHECK (Image_Type IN ('Photo', 'Video')),
-  PRIMARY KEY (SnapID),
-  FOREIGN KEY (Sender_UserID) REFERENCES Users (UserID),
-  FOREIGN KEY (Receiver_UserID) REFERENCES Users (UserID)
-);
 
-CREATE TABLE Picture
-(
-  Snap_ID INT NOT NULL,
-  Image_Type VARCHAR(6) NOT NULL,
-  Timestamp DATE NOT NULL,
-  Location VARCHAR(50) NOT NULL,
-  CONSTRAINT valid_Image_Type CHECK (Image_Type IN ('Photo', 'Video')),
-  PRIMARY KEY (Snap_ID),
-  FOREIGN KEY (Snap_ID) REFERENCES Snap (SnapID)
-);
+This database is designed to support the management of user interactions on a social media platform similar to Snapchat by organizing data related to users, messages, snaps, friend requests, and groups. The Users table stores details about individuals, identified by their unique user ID, with additional information such as email, name, and phone number. Each user can send messages or snaps, which are recorded in the Message and Snap tables, respectively. The Message table tracks communication between users within specific group chats, while the Snap table records the sharing of photos or videos between users, storing metadata such as image type and sender/receiver information.
 
-CREATE TABLE Saves
-(
-  Snap_ID INT NOT NULL,
-  Saved_By_UserID INT NOT NULL,
-  Image_Type VARCHAR(6) NOT NULL,
-  Timestamp DATE NOT NULL,
-  CONSTRAINT valid_Image_Type CHECK (Image_Type IN ('Photo', 'Video')),
-  PRIMARY KEY (Snap_ID),
-  FOREIGN KEY (Snap_ID) REFERENCES Snap (SnapID),
-  FOREIGN KEY (Saved_By_UserID) REFERENCES Users (UserID)
-);
+The Friend table manages the relationships between users, tracking incoming and outgoing friend requests. When users save snaps, this action is recorded in the Saves table, providing insight into user engagement with the shared content. The Picture table stores additional metadata for snaps, such as location and timestamp.
 
-CREATE TABLE Friend
-(
-  Request_ID INT NOT NULL,
-  Sender_UserID INT NOT NULL,
-  Receiver_UserID INT NOT NULL,
-  PRIMARY KEY (Request_ID),
-  FOREIGN KEY (Sender_UserID) REFERENCES Users (UserID),
-  FOREIGN KEY (Receiver_UserID) REFERENCES Users (UserID)
-);
+The Groups table organizes users into groups for group chats, and the Memory table stores a history of saved snaps, allowing users to revisit past shared moments. This database ensures that interactions such as messaging, snapping, and friend requests are efficiently managed and retrievable, enabling platform administrators to monitor user behavior, track engagement, and maintain a smooth user experience.
 
-CREATE TABLE Memory
-(
-  Snap_ID INT NOT NULL,
-  Date DATE NOT NULL,
-  PRIMARY KEY (Snap_ID),
-  FOREIGN KEY (Snap_ID) REFERENCES Snap (SnapID)
-);
 
-CREATE TABLE Groups
-(
-  Group_ID INT NOT NULL,
-  Created_By_UserID INT NOT NULL,
-  Group_Name VARCHAR(60) NOT NULL,
-  PRIMARY KEY (Group_ID),
-  FOREIGN KEY (Created_By_UserID) REFERENCES Users (UserID)
-);
+
+
+
+
+
+
+
