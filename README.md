@@ -14,6 +14,8 @@ The Groups table organizes users into groups for group chats, and the Memory tab
 
 ## Relational Model 
 
+![Relational Model of Snapchat](Schema.png)
+
 ## Source Code
 
 * [Create Script (DDL)](Create.SQL)
