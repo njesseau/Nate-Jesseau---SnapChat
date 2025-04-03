@@ -23,6 +23,66 @@ The Groups table organizes users into groups for group chats, and the Memory tab
 
 
 
+## Queries
+
+Query 1
+Find all the users who have received a friend request from a specific user.
+SELECT U.Name, U.UserID, F.Sender_UserID, F. Receiver_UserID  
+FROM Users as U
+JOIN Friend as F on U.UserID = F.Receiver_UserID
+WHERE F.Sender_UserID = '1';
+
+
+
+Query 2
+
+Show all the messages from a group chat
+
+SELECT M.timestamp, M.sender_UserID, M.Group_ID, G.Group_Name
+FROM Message as M 
+JOIN Groups as G on M.Group_ID = G.Group_ID
+WHERE G.Group_ID = '1';
+
+
+
+
+Query 3
+
+Counting the amount of snaps saved by a specific user - Aggregation
+
+SELECT COUNT (S.Snap_ID) as NumberOfSnapsSaved
+FROM Saves as S
+WHERE S.Saved_By_UserID = '2';
+
+
+Query 4
+
+Find The Names of USers and the Number of snaps they’ve sent.
+
+SELECT U.Name, COUNT(S.SnapID) AS NumberOfSnapsSent
+FROM Users AS U
+JOIN Snap AS S ON U.UserID = S.Sender_UserID
+GROUP BY U.Name
+ORDER BY NumberOfSnapsSent DESC;
+
+Query 5
+
+Estimated storage per snap
+SELECT  U.Name, 
+COUNT(S.SnapID) AS NumberOfSnapsSent, 
+COUNT(S.SnapID) * 2.5 AS EstimatedStorageMB
+FROM Users AS U
+JOIN Snap AS S ON U.UserID = S.Sender_UserID
+GROUP BY U.Name
+ORDER BY EstimatedStorageMB DESC;
+
+
+
+
+
+
+
+
 
 
 
